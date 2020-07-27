@@ -24,16 +24,16 @@ class App extends Component {
     })
   }
 
-  updatePost(id, text) {
-    axios.put(`https://practiceapi.devmountain.com/api/posts?${id}`, {text})
-    .then( results => {
+  updatePost( id, text ) {
+    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${ id }`, { text }).then(results => {
       this.setState({ posts: results.data})
     })
-  
   }
 
-  deletePost() {
-
+  deletePost(id) {
+    axios.delete(`https:practiceapi.devmountain.com/api/posts?id=${ id }`).then( results => {
+      this.setState({ posts: results.data })
+    })
   }
 
   createPost() {
@@ -49,13 +49,17 @@ class App extends Component {
 
         <section className="App__content">
 
-          <Compose />
+        <Compose />
 
-          {
-            posts.map( post => (
-              <Post key={ post.id } text={ post.text } date={ post.date} updatedPostFn={ this.updatePost } id={ post.id } />
-            ))
-          }  
+        {
+        posts.map( post => (
+          <Post key={ post.id }
+            text={ post.text}
+            date={ post.date }
+            id={ post.id }
+            updatePostFn={ this.updatePost } />
+  ))
+}  
           
         </section>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './Edit.css';
+import Axios from 'axios';
 
 //////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *POST* COMPONENT
 
@@ -20,10 +21,10 @@ class Edit extends Component {
   }
 
   updatePost() {
-    const { text }= this.state;
+    const { text } = this.state;
     const { id, updatePostFn, hideEdit } = this.props;
-
-   updatePostFn( id, text );
+  
+    updatePostFn( id, text );
     hideEdit();
   }
 
